@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <title>isSameType Demo</title>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h2>Check if Two Values Are of the Same Type</h2>
 
+  <label>Value 1: <input type="text" id="val1"></label><br>
+  <label>Value 2: <input type="text" id="val2"></label><br><br>
+
+  <button onclick="checkType()">Check Type</button>
+
+  <p id="result"></p>
+
+  <script>
+    function isSameType(value1, value2) {
+      // Convert values to actual JavaScript types
+      const v1 = parseValue(value1);
+      const v2 = parseValue(value2);
+
+      if (Number.isNaN(v1) && Number.isNaN(v2)) {
+        return true;
+      }
+
+      return typeof v1 === typeof v2;
+    }
+
+    function parseValue(val) {
+      if (val.trim().toLowerCase() === 'nan') return NaN;
+      if (!isNaN(Number(val))) return Number(val);
+      return val;
+    }
+
+    function checkType() {
+      const val1 = document.getElementById("val1").value;
+      const val2 = document.getElementById("val2").value;
+      const result = isSameType(val1, val2);
+
+      document.getElementById("result").innerText =
+        `Same Type: ${result}`;
+    }
+  </script>
 </body>
-
 </html>
